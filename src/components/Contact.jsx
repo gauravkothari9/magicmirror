@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 const initial = { name: '', email: '', phone: '', topic: '', message: '', consent: false };
 
 export default function Contact() {
@@ -18,7 +20,7 @@ export default function Contact() {
     setErrorMsg('');
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),

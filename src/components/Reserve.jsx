@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+const API_BASE = import.meta.env.VITE_API_URL || '';
+
 export default function Reserve() {
   const [form, setForm] = useState({ email: '', phone: '' });
   const [status, setStatus] = useState('idle');
@@ -13,7 +15,7 @@ export default function Reserve() {
     setErrorMsg('');
 
     try {
-      const res = await fetch('/api/reservation', {
+      const res = await fetch(`${API_BASE}/api/reservation`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(form),
